@@ -10,8 +10,7 @@
 namespace Entities
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class comment
     {
         public int commnt_Id { get; set; }

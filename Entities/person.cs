@@ -9,7 +9,6 @@
 
 namespace Entities
 {
-    using System;
     using System.Collections.Generic;
     
     public partial class person

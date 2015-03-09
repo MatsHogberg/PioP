@@ -10,8 +10,7 @@
 namespace Entities
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class onquality
     {
         public int onquality_Id { get; set; }

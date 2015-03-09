@@ -1,9 +1,6 @@
-﻿using System;
+﻿using PioPortal.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PioPortal.ViewModels;
 
 namespace PioPortal.Mappers
 {

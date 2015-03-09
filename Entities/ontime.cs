@@ -10,8 +10,7 @@
 namespace Entities
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class ontime
     {
         public int ontime_Id { get; set; }

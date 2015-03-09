@@ -8,5 +8,3 @@ C:\Users\mhogberg\Documents\Visual Studio 2012\Projects\PioPortal\DataAccess\bin
 C:\Users\mhogberg\Documents\Visual Studio 2012\Projects\PioPortal\DataAccess\obj\Debug\DataAccess.dll
 C:\Users\mhogberg\Documents\Visual Studio 2012\Projects\PioPortal\DataAccess\obj\Debug\DataAccess.pdb
 C:\Users\mhogberg\Documents\Visual Studio 2012\Projects\PioPortal\DataAccess\bin\Debug\DataAccess.dll.config
-C:\Users\mhogberg\Documents\Visual Studio 2012\Projects\PioPortal\DataAccess\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\mhogberg\Documents\Visual Studio 2012\Projects\PioPortal\DataAccess\bin\Debug\EntityFramework.SqlServer.xml
