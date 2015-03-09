@@ -1,0 +1,12 @@
+﻿{
+	"Id": "0",
+	"Code": "999999",
+  "Name": "Nytt projekt",
+  "CustomerId": "1",
+  "StartDate": "2014-01-01",
+  "EndDate": "2016-01-01",
+  "BusinessManagerId": "1",
+  "ProjectManagerId": "2",
+  "SiteId": "5",
+  "AdminLevel": "3"
+}

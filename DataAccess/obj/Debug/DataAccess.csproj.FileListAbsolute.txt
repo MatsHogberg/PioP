@@ -1,0 +1,12 @@
+C:\Users\mhogberg\Documents\Visual Studio 2012\Projects\PioPortal\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\mhogberg\Documents\Visual Studio 2012\Projects\PioPortal\DataAccess\bin\Debug\DataAccess.dll
+C:\Users\mhogberg\Documents\Visual Studio 2012\Projects\PioPortal\DataAccess\bin\Debug\DataAccess.pdb
+C:\Users\mhogberg\Documents\Visual Studio 2012\Projects\PioPortal\DataAccess\bin\Debug\Entities.dll
+C:\Users\mhogberg\Documents\Visual Studio 2012\Projects\PioPortal\DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\mhogberg\Documents\Visual Studio 2012\Projects\PioPortal\DataAccess\bin\Debug\Entities.pdb
+C:\Users\mhogberg\Documents\Visual Studio 2012\Projects\PioPortal\DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\mhogberg\Documents\Visual Studio 2012\Projects\PioPortal\DataAccess\obj\Debug\DataAccess.dll
+C:\Users\mhogberg\Documents\Visual Studio 2012\Projects\PioPortal\DataAccess\obj\Debug\DataAccess.pdb
+C:\Users\mhogberg\Documents\Visual Studio 2012\Projects\PioPortal\DataAccess\bin\Debug\DataAccess.dll.config
+C:\Users\mhogberg\Documents\Visual Studio 2012\Projects\PioPortal\DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mhogberg\Documents\Visual Studio 2012\Projects\PioPortal\DataAccess\bin\Debug\EntityFramework.SqlServer.xml

@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PioModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="pioEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="carrerpath" EntityType="PioModel.carrerpath" />
+    <EntitySet Name="comment" EntityType="PioModel.comment" />
+    <EntitySet Name="customer" EntityType="PioModel.customer" />
+    <EntitySet Name="meeting" EntityType="PioModel.meeting" />
+    <EntitySet Name="meetingparticipant" EntityType="PioModel.meetingparticipant" />
+    <EntitySet Name="meetingtype" EntityType="PioModel.meetingtype" />
+    <EntitySet Name="onquality" EntityType="PioModel.onquality" />
+    <EntitySet Name="ontime" EntityType="PioModel.ontime" />
+    <EntitySet Name="person" EntityType="PioModel.person" />
+    <EntitySet Name="project" EntityType="PioModel.project" />
+    <EntitySet Name="room" EntityType="PioModel.room" />
+    <EntitySet Name="site" EntityType="PioModel.site" />
+    <AssociationSet Name="fk_Customer" Association="PioModel.fk_Customer">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="project" EntitySet="project" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Site" Association="PioModel.fk_Site">
+      <End Role="site" EntitySet="site" />
+      <End Role="project" EntitySet="project" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="carrerpath">
+    <Key>
+      <PropertyRef Name="carrerpath_Id" />
+    </Key>
+    <Property Name="carrerpath_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="caption" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="comment">
+    <Key>
+      <PropertyRef Name="commnt_Id" />
+    </Key>
+    <Property Name="commnt_Id" Type="Int32" Nullable="false" />
+    <Property Name="comment1" Type="String" Nullable="false" />
+    <Property Name="project_Id" Type="Int32" Nullable="false" />
+    <Property Name="timestamp" Type="DateTime" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="author_Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="customer_Id" />
+    </Key>
+    <Property Name="customer_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" />
+    <NavigationProperty Name="projects" Relationship="PioModel.fk_Customer" FromRole="customer" ToRole="project" />
+  </EntityType>
+  <EntityType Name="meeting">
+    <Key>
+      <PropertyRef Name="meeting_Id" />
+    </Key>
+    <Property Name="meeting_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="meetingtype_Id" Type="Int32" />
+    <Property Name="starttime" Type="DateTime" Nullable="false" />
+    <Property Name="location_Id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="meetingparticipant">
+    <Key>
+      <PropertyRef Name="meeting_Id" />
+      <PropertyRef Name="person_Id" />
+    </Key>
+    <Property Name="meeting_Id" Type="Int32" Nullable="false" />
+    <Property Name="person_Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="meetingtype">
+    <Key>
+      <PropertyRef Name="meetingtype_Id" />
+    </Key>
+    <Property Name="meetingtype_Id" Type="Int32" Nullable="false" />
+    <Property Name="caption" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="onquality">
+    <Key>
+      <PropertyRef Name="onquality_Id" />
+    </Key>
+    <Property Name="onquality_Id" Type="Int32" Nullable="false" />
+    <Property Name="year" Type="Int32" Nullable="false" />
+    <Property Name="month" Type="Int32" Nullable="false" />
+    <Property Name="value" Type="Decimal" />
+    <Property Name="comment" Type="String" />
+    <Property Name="project_Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ontime">
+    <Key>
+      <PropertyRef Name="ontime_Id" />
+    </Key>
+    <Property Name="ontime_Id" Type="Int32" Nullable="false" />
+    <Property Name="year" Type="Int32" Nullable="false" />
+    <Property Name="month" Type="Int32" Nullable="false" />
+    <Property Name="value" Type="Decimal" />
+    <Property Name="comment" Type="String" />
+    <Property Name="project_Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="person">
+    <Key>
+      <PropertyRef Name="person_id" />
+    </Key>
+    <Property Name="person_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="name_first" Type="String" />
+    <Property Name="name_last" Type="String" />
+    <Property Name="carrerpath_Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="project">
+    <Key>
+      <PropertyRef Name="project_Id" />
+    </Key>
+    <Property Name="project_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" />
+    <Property Name="name" Type="String" />
+    <Property Name="customer_Id" Type="Int32" Nullable="false" />
+    <Property Name="start" Type="DateTime" />
+    <Property Name="end" Type="DateTime" />
+    <Property Name="buisness_manager" Type="Int32" Nullable="false" />
+    <Property Name="project_manager" Type="Int32" Nullable="false" />
+    <Property Name="site_Id" Type="Int32" Nullable="false" />
+    <Property Name="adm_level" Type="Int32" />
+    <NavigationProperty Name="customer1" Relationship="PioModel.fk_Customer" FromRole="project" ToRole="customer" />
+    <NavigationProperty Name="site" Relationship="PioModel.fk_Site" FromRole="project" ToRole="site" />
+  </EntityType>
+  <EntityType Name="room">
+    <Key>
+      <PropertyRef Name="room_Id" />
+    </Key>
+    <Property Name="room_Id" Type="Int32" Nullable="false" />
+    <Property Name="caption" Type="String" Nullable="false" />
+    <Property Name="site_Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="site">
+    <Key>
+      <PropertyRef Name="site_Id" />
+    </Key>
+    <Property Name="site_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="caption" Type="String" />
+    <NavigationProperty Name="projects" Relationship="PioModel.fk_Site" FromRole="site" ToRole="project" />
+  </EntityType>
+  <Association Name="fk_Customer">
+    <End Type="PioModel.customer" Role="customer" Multiplicity="1" />
+    <End Type="PioModel.project" Role="project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="customer_Id" />
+      </Principal>
+      <Dependent Role="project">
+        <PropertyRef Name="customer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Site">
+    <End Type="PioModel.site" Role="site" Multiplicity="1" />
+    <End Type="PioModel.project" Role="project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="site">
+        <PropertyRef Name="site_Id" />
+      </Principal>
+      <Dependent Role="project">
+        <PropertyRef Name="site_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

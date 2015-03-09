@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PioModelStoreContainer" CdmEntityContainer="pioEntities">
+    <EntitySetMapping Name="carrerpath">
+      <EntityTypeMapping TypeName="PioModel.carrerpath">
+        <MappingFragment StoreEntitySet="carrerpath">
+          <ScalarProperty Name="carrerpath_Id" ColumnName="carrerpath_Id" />
+          <ScalarProperty Name="caption" ColumnName="caption" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="comment">
+      <EntityTypeMapping TypeName="PioModel.comment">
+        <MappingFragment StoreEntitySet="comment">
+          <ScalarProperty Name="commnt_Id" ColumnName="commnt_Id" />
+          <ScalarProperty Name="comment1" ColumnName="comment" />
+          <ScalarProperty Name="project_Id" ColumnName="project_Id" />
+          <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+          <ScalarProperty Name="author_Id" ColumnName="author_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customer">
+      <EntityTypeMapping TypeName="PioModel.customer">
+        <MappingFragment StoreEntitySet="customer">
+          <ScalarProperty Name="customer_Id" ColumnName="customer_Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="meeting">
+      <EntityTypeMapping TypeName="PioModel.meeting">
+        <MappingFragment StoreEntitySet="meeting">
+          <ScalarProperty Name="meeting_Id" ColumnName="meeting_Id" />
+          <ScalarProperty Name="meetingtype_Id" ColumnName="meetingtype_Id" />
+          <ScalarProperty Name="starttime" ColumnName="starttime" />
+          <ScalarProperty Name="location_Id" ColumnName="location_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="meetingparticipant">
+      <EntityTypeMapping TypeName="PioModel.meetingparticipant">
+        <MappingFragment StoreEntitySet="meetingparticipant">
+          <ScalarProperty Name="meeting_Id" ColumnName="meeting_Id" />
+          <ScalarProperty Name="person_Id" ColumnName="person_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="meetingtype">
+      <EntityTypeMapping TypeName="PioModel.meetingtype">
+        <MappingFragment StoreEntitySet="meetingtype">
+          <ScalarProperty Name="meetingtype_Id" ColumnName="meetingtype_Id" />
+          <ScalarProperty Name="caption" ColumnName="caption" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="onquality">
+      <EntityTypeMapping TypeName="PioModel.onquality">
+        <MappingFragment StoreEntitySet="onquality">
+          <ScalarProperty Name="onquality_Id" ColumnName="onquality_Id" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="month" ColumnName="month" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="project_Id" ColumnName="project_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ontime">
+      <EntityTypeMapping TypeName="PioModel.ontime">
+        <MappingFragment StoreEntitySet="ontime">
+          <ScalarProperty Name="ontime_Id" ColumnName="ontime_Id" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="month" ColumnName="month" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="project_Id" ColumnName="project_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="person">
+      <EntityTypeMapping TypeName="PioModel.person">
+        <MappingFragment StoreEntitySet="person">
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="name_first" ColumnName="name_first" />
+          <ScalarProperty Name="name_last" ColumnName="name_last" />
+          <ScalarProperty Name="carrerpath_Id" ColumnName="carrerpath_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project">
+      <EntityTypeMapping TypeName="PioModel.project">
+        <MappingFragment StoreEntitySet="project">
+          <ScalarProperty Name="project_Id" ColumnName="project_Id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="customer_Id" ColumnName="customer_Id" />
+          <ScalarProperty Name="start" ColumnName="start" />
+          <ScalarProperty Name="end" ColumnName="end" />
+          <ScalarProperty Name="buisness_manager" ColumnName="buisness_manager" />
+          <ScalarProperty Name="project_manager" ColumnName="project_manager" />
+          <ScalarProperty Name="site_Id" ColumnName="site_Id" />
+          <ScalarProperty Name="adm_level" ColumnName="adm_level" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="room">
+      <EntityTypeMapping TypeName="PioModel.room">
+        <MappingFragment StoreEntitySet="room">
+          <ScalarProperty Name="room_Id" ColumnName="room_Id" />
+          <ScalarProperty Name="caption" ColumnName="caption" />
+          <ScalarProperty Name="site_Id" ColumnName="site_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="site">
+      <EntityTypeMapping TypeName="PioModel.site">
+        <MappingFragment StoreEntitySet="site">
+          <ScalarProperty Name="site_Id" ColumnName="site_Id" />
+          <ScalarProperty Name="caption" ColumnName="caption" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

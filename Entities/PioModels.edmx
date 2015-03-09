@@ -1,0 +1,748 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PIOModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="PIOModelStoreContainer">
+          <EntitySet Name="carrerpath" EntityType="PIOModel.Store.carrerpath" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="comment" EntityType="PIOModel.Store.comment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="customer" EntityType="PIOModel.Store.customer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="meeting" EntityType="PIOModel.Store.meeting" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="meetingparticipant" EntityType="PIOModel.Store.meetingparticipant" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="meetingtype" EntityType="PIOModel.Store.meetingtype" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="onquality" EntityType="PIOModel.Store.onquality" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ontime" EntityType="PIOModel.Store.ontime" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="person" EntityType="PIOModel.Store.person" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="project" EntityType="PIOModel.Store.project" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="room" EntityType="PIOModel.Store.room" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="site" EntityType="PIOModel.Store.site" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_meeting_meetingtype" Association="PIOModel.Store.FK_meeting_meetingtype">
+            <End Role="meetingtype" EntitySet="meetingtype" />
+            <End Role="meeting" EntitySet="meeting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_meeting_project" Association="PIOModel.Store.FK_meeting_project">
+            <End Role="project" EntitySet="project" />
+            <End Role="meeting" EntitySet="meeting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_meeting_room" Association="PIOModel.Store.FK_meeting_room">
+            <End Role="room" EntitySet="room" />
+            <End Role="meeting" EntitySet="meeting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_meetingparticipant_meeting" Association="PIOModel.Store.FK_meetingparticipant_meeting">
+            <End Role="meeting" EntitySet="meeting" />
+            <End Role="meetingparticipant" EntitySet="meetingparticipant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_meetingparticipant_person" Association="PIOModel.Store.FK_meetingparticipant_person">
+            <End Role="person" EntitySet="person" />
+            <End Role="meetingparticipant" EntitySet="meetingparticipant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_carrerpath" Association="PIOModel.Store.FK_person_carrerpath">
+            <End Role="carrerpath" EntitySet="carrerpath" />
+            <End Role="person" EntitySet="person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_project_BusinessManager" Association="PIOModel.Store.FK_project_BusinessManager">
+            <End Role="person" EntitySet="person" />
+            <End Role="project" EntitySet="project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_project_customer" Association="PIOModel.Store.FK_project_customer">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="project" EntitySet="project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_ProjectManager" Association="PIOModel.Store.FK_Project_ProjectManager">
+            <End Role="person" EntitySet="person" />
+            <End Role="project" EntitySet="project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_project_site" Association="PIOModel.Store.FK_project_site">
+            <End Role="site" EntitySet="site" />
+            <End Role="project" EntitySet="project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_room_site" Association="PIOModel.Store.FK_room_site">
+            <End Role="site" EntitySet="site" />
+            <End Role="room" EntitySet="room" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="carrerpath">
+          <Key>
+            <PropertyRef Name="carrerpath_Id" />
+          </Key>
+          <Property Name="carrerpath_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="caption" Type="nvarchar" Nullable="false" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="commnt_Id" />
+          </Key>
+          <Property Name="commnt_Id" Type="int" Nullable="false" />
+          <Property Name="comment" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="project_Id" Type="int" Nullable="false" />
+          <Property Name="timestamp" Type="datetime2" Precision="0" />
+          <Property Name="author_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="customer_Id" />
+          </Key>
+          <Property Name="customer_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="meeting">
+          <Key>
+            <PropertyRef Name="meeting_Id" />
+          </Key>
+          <Property Name="meeting_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="meetingtype_Id" Type="int" />
+          <Property Name="starttime" Type="datetime2" Nullable="false" Precision="0" />
+          <Property Name="location_Id" Type="int" />
+          <Property Name="project_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="meetingparticipant">
+          <Key>
+            <PropertyRef Name="meeting_Id" />
+            <PropertyRef Name="person_Id" />
+          </Key>
+          <Property Name="meeting_Id" Type="int" Nullable="false" />
+          <Property Name="person_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="meetingtype">
+          <Key>
+            <PropertyRef Name="meetingtype_Id" />
+          </Key>
+          <Property Name="meetingtype_Id" Type="int" Nullable="false" />
+          <Property Name="caption" Type="nvarchar" Nullable="false" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="onquality">
+          <Key>
+            <PropertyRef Name="onquality_Id" />
+          </Key>
+          <Property Name="onquality_Id" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="value" Type="decimal" Precision="10" />
+          <Property Name="comment" Type="nvarchar" MaxLength="256" />
+          <Property Name="project_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ontime">
+          <Key>
+            <PropertyRef Name="ontime_Id" />
+          </Key>
+          <Property Name="ontime_Id" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="value" Type="decimal" Precision="10" />
+          <Property Name="comment" Type="nvarchar" MaxLength="256" />
+          <Property Name="project_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="person">
+          <Key>
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="person_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name_first" Type="nvarchar" MaxLength="45" />
+          <Property Name="name_last" Type="nvarchar" MaxLength="45" />
+          <Property Name="carrerpath_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="project_Id" />
+          </Key>
+          <Property Name="project_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="nvarchar" MaxLength="45" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" />
+          <Property Name="customer_Id" Type="int" Nullable="false" />
+          <Property Name="start" Type="date" />
+          <Property Name="end" Type="date" />
+          <Property Name="buisness_manager" Type="int" Nullable="false" />
+          <Property Name="project_manager" Type="int" Nullable="false" />
+          <Property Name="site_Id" Type="int" Nullable="false" />
+          <Property Name="adm_level" Type="int" />
+        </EntityType>
+        <EntityType Name="room">
+          <Key>
+            <PropertyRef Name="room_Id" />
+          </Key>
+          <Property Name="room_Id" Type="int" Nullable="false" />
+          <Property Name="caption" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="site_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="site">
+          <Key>
+            <PropertyRef Name="site_Id" />
+          </Key>
+          <Property Name="site_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="caption" Type="nvarchar" MaxLength="45" />
+        </EntityType>
+        <Association Name="FK_meeting_meetingtype">
+          <End Role="meetingtype" Type="PIOModel.Store.meetingtype" Multiplicity="0..1" />
+          <End Role="meeting" Type="PIOModel.Store.meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="meetingtype">
+              <PropertyRef Name="meetingtype_Id" />
+            </Principal>
+            <Dependent Role="meeting">
+              <PropertyRef Name="meetingtype_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_meeting_project">
+          <End Role="project" Type="PIOModel.Store.project" Multiplicity="0..1" />
+          <End Role="meeting" Type="PIOModel.Store.meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="project_Id" />
+            </Principal>
+            <Dependent Role="meeting">
+              <PropertyRef Name="project_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_meeting_room">
+          <End Role="room" Type="PIOModel.Store.room" Multiplicity="0..1" />
+          <End Role="meeting" Type="PIOModel.Store.meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="room">
+              <PropertyRef Name="room_Id" />
+            </Principal>
+            <Dependent Role="meeting">
+              <PropertyRef Name="location_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_meetingparticipant_meeting">
+          <End Role="meeting" Type="PIOModel.Store.meeting" Multiplicity="1" />
+          <End Role="meetingparticipant" Type="PIOModel.Store.meetingparticipant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="meeting">
+              <PropertyRef Name="meeting_Id" />
+            </Principal>
+            <Dependent Role="meetingparticipant">
+              <PropertyRef Name="meeting_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_meetingparticipant_person">
+          <End Role="person" Type="PIOModel.Store.person" Multiplicity="1" />
+          <End Role="meetingparticipant" Type="PIOModel.Store.meetingparticipant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="meetingparticipant">
+              <PropertyRef Name="person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_carrerpath">
+          <End Role="carrerpath" Type="PIOModel.Store.carrerpath" Multiplicity="1" />
+          <End Role="person" Type="PIOModel.Store.person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="carrerpath">
+              <PropertyRef Name="carrerpath_Id" />
+            </Principal>
+            <Dependent Role="person">
+              <PropertyRef Name="carrerpath_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_project_BusinessManager">
+          <End Role="person" Type="PIOModel.Store.person" Multiplicity="1" />
+          <End Role="project" Type="PIOModel.Store.project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="buisness_manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_project_customer">
+          <End Role="customer" Type="PIOModel.Store.customer" Multiplicity="1" />
+          <End Role="project" Type="PIOModel.Store.project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="customer_Id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="customer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_ProjectManager">
+          <End Role="person" Type="PIOModel.Store.person" Multiplicity="1" />
+          <End Role="project" Type="PIOModel.Store.project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="project_manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_project_site">
+          <End Role="site" Type="PIOModel.Store.site" Multiplicity="1" />
+          <End Role="project" Type="PIOModel.Store.project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site">
+              <PropertyRef Name="site_Id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="site_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_room_site">
+          <End Role="site" Type="PIOModel.Store.site" Multiplicity="1" />
+          <End Role="room" Type="PIOModel.Store.room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site">
+              <PropertyRef Name="site_Id" />
+            </Principal>
+            <Dependent Role="room">
+              <PropertyRef Name="site_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PIOModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PIOEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="carrerpath" EntityType="PIOModel.carrerpath" />
+          <EntitySet Name="comment" EntityType="PIOModel.comment" />
+          <EntitySet Name="customer" EntityType="PIOModel.customer" />
+          <EntitySet Name="meeting" EntityType="PIOModel.meeting" />
+          <EntitySet Name="meetingtype" EntityType="PIOModel.meetingtype" />
+          <EntitySet Name="onquality" EntityType="PIOModel.onquality" />
+          <EntitySet Name="ontime" EntityType="PIOModel.ontime" />
+          <EntitySet Name="person" EntityType="PIOModel.person" />
+          <EntitySet Name="project" EntityType="PIOModel.project" />
+          <EntitySet Name="room" EntityType="PIOModel.room" />
+          <EntitySet Name="site" EntityType="PIOModel.site" />
+          <AssociationSet Name="FK_project_customer" Association="PIOModel.FK_project_customer">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="project" EntitySet="project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_meeting_meetingtype" Association="PIOModel.FK_meeting_meetingtype">
+            <End Role="meetingtype" EntitySet="meetingtype" />
+            <End Role="meeting" EntitySet="meeting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_project_site" Association="PIOModel.FK_project_site">
+            <End Role="site" EntitySet="site" />
+            <End Role="project" EntitySet="project" />
+          </AssociationSet>
+          <AssociationSet Name="meetingparticipant" Association="PIOModel.meetingparticipant">
+            <End Role="meeting" EntitySet="meeting" />
+            <End Role="person" EntitySet="person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_carrerpath" Association="PIOModel.FK_person_carrerpath">
+            <End Role="carrerpath" EntitySet="carrerpath" />
+            <End Role="person" EntitySet="person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_meeting_project" Association="PIOModel.FK_meeting_project">
+            <End Role="project" EntitySet="project" />
+            <End Role="meeting" EntitySet="meeting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_project_BusinessManager" Association="PIOModel.FK_project_BusinessManager">
+            <End Role="person" EntitySet="person" />
+            <End Role="project" EntitySet="project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_ProjectManager" Association="PIOModel.FK_Project_ProjectManager">
+            <End Role="person" EntitySet="person" />
+            <End Role="project" EntitySet="project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_meeting_room" Association="PIOModel.FK_meeting_room">
+            <End Role="room" EntitySet="room" />
+            <End Role="meeting" EntitySet="meeting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_room_site" Association="PIOModel.FK_room_site">
+            <End Role="site" EntitySet="site" />
+            <End Role="room" EntitySet="room" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="carrerpath">
+          <Key>
+            <PropertyRef Name="carrerpath_Id" />
+          </Key>
+          <Property Name="carrerpath_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="caption" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="person" Relationship="PIOModel.FK_person_carrerpath" FromRole="carrerpath" ToRole="person" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="commnt_Id" />
+          </Key>
+          <Property Name="commnt_Id" Type="Int32" Nullable="false" />
+          <Property Name="comment1" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="project_Id" Type="Int32" Nullable="false" />
+          <Property Name="timestamp" Type="DateTime" Precision="0" />
+          <Property Name="author_Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="customer_Id" />
+          </Key>
+          <Property Name="customer_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="project" Relationship="PIOModel.FK_project_customer" FromRole="customer" ToRole="project" />
+        </EntityType>
+        <EntityType Name="meeting">
+          <Key>
+            <PropertyRef Name="meeting_Id" />
+          </Key>
+          <Property Name="meeting_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="meetingtype_Id" Type="Int32" />
+          <Property Name="starttime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="location_Id" Type="Int32" />
+          <NavigationProperty Name="meetingtype" Relationship="PIOModel.FK_meeting_meetingtype" FromRole="meeting" ToRole="meetingtype" />
+          <NavigationProperty Name="person" Relationship="PIOModel.meetingparticipant" FromRole="meeting" ToRole="person" />
+          <Property Type="Int32" Name="project_Id" />
+          <NavigationProperty Name="project" Relationship="PIOModel.FK_meeting_project" FromRole="meeting" ToRole="project" />
+          <NavigationProperty Name="room" Relationship="PIOModel.FK_meeting_room" FromRole="meeting" ToRole="room" />
+        </EntityType>
+        <EntityType Name="meetingtype">
+          <Key>
+            <PropertyRef Name="meetingtype_Id" />
+          </Key>
+          <Property Name="meetingtype_Id" Type="Int32" Nullable="false" />
+          <Property Name="caption" Type="String" Nullable="false" MaxLength="45" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="meeting" Relationship="PIOModel.FK_meeting_meetingtype" FromRole="meetingtype" ToRole="meeting" />
+        </EntityType>
+        <EntityType Name="onquality">
+          <Key>
+            <PropertyRef Name="onquality_Id" />
+          </Key>
+          <Property Name="onquality_Id" Type="Int32" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <Property Name="month" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="comment" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="project_Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ontime">
+          <Key>
+            <PropertyRef Name="ontime_Id" />
+          </Key>
+          <Property Name="ontime_Id" Type="Int32" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <Property Name="month" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="comment" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="project_Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="person">
+          <Key>
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="person_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="name_first" Type="String" MaxLength="45" Unicode="true" FixedLength="false" />
+          <Property Name="name_last" Type="String" MaxLength="45" Unicode="true" FixedLength="false" />
+          <Property Name="carrerpath_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="meeting" Relationship="PIOModel.meetingparticipant" FromRole="person" ToRole="meeting" />
+          <NavigationProperty Name="carrerpath" Relationship="PIOModel.FK_person_carrerpath" FromRole="person" ToRole="carrerpath" />
+          <NavigationProperty Name="project" Relationship="PIOModel.FK_project_BusinessManager" FromRole="person" ToRole="project" />
+          <NavigationProperty Name="project1" Relationship="PIOModel.FK_Project_ProjectManager" FromRole="person" ToRole="project" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="project_Id" />
+          </Key>
+          <Property Name="project_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="45" Unicode="true" FixedLength="false" />
+          <Property Name="name" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="customer_Id" Type="Int32" Nullable="false" />
+          <Property Name="start" Type="DateTime" Precision="0" />
+          <Property Name="end" Type="DateTime" Precision="0" />
+          <Property Name="buisness_manager" Type="Int32" Nullable="false" />
+          <Property Name="project_manager" Type="Int32" Nullable="false" />
+          <Property Name="site_Id" Type="Int32" Nullable="false" />
+          <Property Name="adm_level" Type="Int32" />
+          <NavigationProperty Name="customer" Relationship="PIOModel.FK_project_customer" FromRole="project" ToRole="customer" />
+          <NavigationProperty Name="site" Relationship="PIOModel.FK_project_site" FromRole="project" ToRole="site" />
+          <NavigationProperty Name="meeting" Relationship="PIOModel.FK_meeting_project" FromRole="project" ToRole="meeting" />
+          <NavigationProperty Name="businessManager" Relationship="PIOModel.FK_project_BusinessManager" FromRole="project" ToRole="person" />
+          <NavigationProperty Name="projectManager" Relationship="PIOModel.FK_Project_ProjectManager" FromRole="project" ToRole="person" />
+        </EntityType>
+        <EntityType Name="room">
+          <Key>
+            <PropertyRef Name="room_Id" />
+          </Key>
+          <Property Name="room_Id" Type="Int32" Nullable="false" />
+          <Property Name="caption" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="site_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="meeting" Relationship="PIOModel.FK_meeting_room" FromRole="room" ToRole="meeting" />
+          <NavigationProperty Name="site" Relationship="PIOModel.FK_room_site" FromRole="room" ToRole="site" />
+        </EntityType>
+        <EntityType Name="site">
+          <Key>
+            <PropertyRef Name="site_Id" />
+          </Key>
+          <Property Name="site_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="caption" Type="String" MaxLength="45" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="project" Relationship="PIOModel.FK_project_site" FromRole="site" ToRole="project" />
+          <NavigationProperty Name="room" Relationship="PIOModel.FK_room_site" FromRole="site" ToRole="room" />
+        </EntityType>
+        <Association Name="FK_project_customer">
+          <End Role="customer" Type="PIOModel.customer" Multiplicity="1" />
+          <End Role="project" Type="PIOModel.project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="customer_Id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="customer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_meeting_meetingtype">
+          <End Role="meetingtype" Type="PIOModel.meetingtype" Multiplicity="0..1" />
+          <End Role="meeting" Type="PIOModel.meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="meetingtype">
+              <PropertyRef Name="meetingtype_Id" />
+            </Principal>
+            <Dependent Role="meeting">
+              <PropertyRef Name="meetingtype_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_project_site">
+          <End Role="site" Type="PIOModel.site" Multiplicity="1" />
+          <End Role="project" Type="PIOModel.project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site">
+              <PropertyRef Name="site_Id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="site_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="meetingparticipant">
+          <End Role="meeting" Type="PIOModel.meeting" Multiplicity="*" />
+          <End Role="person" Type="PIOModel.person" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_person_carrerpath">
+          <End Type="PIOModel.carrerpath" Role="carrerpath" Multiplicity="1" />
+          <End Type="PIOModel.person" Role="person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="carrerpath">
+              <PropertyRef Name="carrerpath_Id" />
+            </Principal>
+            <Dependent Role="person">
+              <PropertyRef Name="carrerpath_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_meeting_project">
+          <End Type="PIOModel.project" Role="project" Multiplicity="0..1" />
+          <End Type="PIOModel.meeting" Role="meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="project_Id" />
+            </Principal>
+            <Dependent Role="meeting">
+              <PropertyRef Name="project_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_project_BusinessManager">
+          <End Type="PIOModel.person" Role="person" Multiplicity="1" />
+          <End Type="PIOModel.project" Role="project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="buisness_manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_ProjectManager">
+          <End Type="PIOModel.person" Role="person" Multiplicity="1" />
+          <End Type="PIOModel.project" Role="project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="project_manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_meeting_room">
+          <End Type="PIOModel.room" Role="room" Multiplicity="0..1" />
+          <End Type="PIOModel.meeting" Role="meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="room">
+              <PropertyRef Name="room_Id" />
+            </Principal>
+            <Dependent Role="meeting">
+              <PropertyRef Name="location_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_room_site">
+          <End Type="PIOModel.site" Role="site" Multiplicity="1" />
+          <End Type="PIOModel.room" Role="room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site">
+              <PropertyRef Name="site_Id" />
+            </Principal>
+            <Dependent Role="room">
+              <PropertyRef Name="site_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PIOModelStoreContainer" CdmEntityContainer="PIOEntities">
+          <EntitySetMapping Name="carrerpath">
+            <EntityTypeMapping TypeName="PIOModel.carrerpath">
+              <MappingFragment StoreEntitySet="carrerpath">
+                <ScalarProperty Name="carrerpath_Id" ColumnName="carrerpath_Id" />
+                <ScalarProperty Name="caption" ColumnName="caption" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comment">
+            <EntityTypeMapping TypeName="PIOModel.comment">
+              <MappingFragment StoreEntitySet="comment">
+                <ScalarProperty Name="commnt_Id" ColumnName="commnt_Id" />
+                <ScalarProperty Name="comment1" ColumnName="comment" />
+                <ScalarProperty Name="project_Id" ColumnName="project_Id" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="author_Id" ColumnName="author_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customer">
+            <EntityTypeMapping TypeName="PIOModel.customer">
+              <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="customer_Id" ColumnName="customer_Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="meeting">
+            <EntityTypeMapping TypeName="PIOModel.meeting">
+              <MappingFragment StoreEntitySet="meeting">
+                <ScalarProperty Name="project_Id" ColumnName="project_Id" />
+                <ScalarProperty Name="meeting_Id" ColumnName="meeting_Id" />
+                <ScalarProperty Name="meetingtype_Id" ColumnName="meetingtype_Id" />
+                <ScalarProperty Name="starttime" ColumnName="starttime" />
+                <ScalarProperty Name="location_Id" ColumnName="location_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="meetingtype">
+            <EntityTypeMapping TypeName="PIOModel.meetingtype">
+              <MappingFragment StoreEntitySet="meetingtype">
+                <ScalarProperty Name="meetingtype_Id" ColumnName="meetingtype_Id" />
+                <ScalarProperty Name="caption" ColumnName="caption" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="onquality">
+            <EntityTypeMapping TypeName="PIOModel.onquality">
+              <MappingFragment StoreEntitySet="onquality">
+                <ScalarProperty Name="onquality_Id" ColumnName="onquality_Id" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="project_Id" ColumnName="project_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ontime">
+            <EntityTypeMapping TypeName="PIOModel.ontime">
+              <MappingFragment StoreEntitySet="ontime">
+                <ScalarProperty Name="ontime_Id" ColumnName="ontime_Id" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="project_Id" ColumnName="project_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="person">
+            <EntityTypeMapping TypeName="PIOModel.person">
+              <MappingFragment StoreEntitySet="person">
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+                <ScalarProperty Name="name_first" ColumnName="name_first" />
+                <ScalarProperty Name="name_last" ColumnName="name_last" />
+                <ScalarProperty Name="carrerpath_Id" ColumnName="carrerpath_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="project">
+            <EntityTypeMapping TypeName="PIOModel.project">
+              <MappingFragment StoreEntitySet="project">
+                <ScalarProperty Name="project_Id" ColumnName="project_Id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="customer_Id" ColumnName="customer_Id" />
+                <ScalarProperty Name="start" ColumnName="start" />
+                <ScalarProperty Name="end" ColumnName="end" />
+                <ScalarProperty Name="buisness_manager" ColumnName="buisness_manager" />
+                <ScalarProperty Name="project_manager" ColumnName="project_manager" />
+                <ScalarProperty Name="site_Id" ColumnName="site_Id" />
+                <ScalarProperty Name="adm_level" ColumnName="adm_level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="room">
+            <EntityTypeMapping TypeName="PIOModel.room">
+              <MappingFragment StoreEntitySet="room">
+                <ScalarProperty Name="room_Id" ColumnName="room_Id" />
+                <ScalarProperty Name="caption" ColumnName="caption" />
+                <ScalarProperty Name="site_Id" ColumnName="site_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="site">
+            <EntityTypeMapping TypeName="PIOModel.site">
+              <MappingFragment StoreEntitySet="site">
+                <ScalarProperty Name="site_Id" ColumnName="site_Id" />
+                <ScalarProperty Name="caption" ColumnName="caption" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="meetingparticipant" TypeName="PIOModel.meetingparticipant" StoreEntitySet="meetingparticipant">
+            <EndProperty Name="meeting">
+              <ScalarProperty Name="meeting_Id" ColumnName="meeting_Id" />
+            </EndProperty>
+            <EndProperty Name="person">
+              <ScalarProperty Name="person_id" ColumnName="person_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
